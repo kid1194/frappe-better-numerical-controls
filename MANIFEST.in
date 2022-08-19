@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include frappe_better_numerical_controls *.css
+recursive-include frappe_better_numerical_controls *.csv
+recursive-include frappe_better_numerical_controls *.html
+recursive-include frappe_better_numerical_controls *.ico
+recursive-include frappe_better_numerical_controls *.js
+recursive-include frappe_better_numerical_controls *.json
+recursive-include frappe_better_numerical_controls *.md
+recursive-include frappe_better_numerical_controls *.png
+recursive-include frappe_better_numerical_controls *.py
+recursive-include frappe_better_numerical_controls *.svg
+recursive-include frappe_better_numerical_controls *.txt
+recursive-exclude frappe_better_numerical_controls *.pyc
