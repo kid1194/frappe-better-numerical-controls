@@ -1,0 +1,4 @@
+{
+  "js/better_int.js": ["public/js/better_int_v13.bundle.js"],
+  "js/better_float.js": ["public/js/better_float_v13.bundle.js"]
+}
