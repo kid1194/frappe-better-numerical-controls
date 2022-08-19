@@ -1,0 +1,23 @@
+[project]
+name = "frappe_better_numerical_controls"
+authors = [
+    {name = "Ameen Ahmed (Level Up)", email = "kid1194@gmail.com"}
+]
+description = "Frappe numerical controls that supports customization."
+keywords = ["frappe", "erpnext", "controls", "numerical", "int", "float", "currency"]
+license_file = "license.txt"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: JavaScript"
+]
+requires-python = ">=3.6"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    "frappe>=13.0.0"
+]
+
+[project.urls]
+Documentation = "https://github.com/kid1194/frappe-better-numerical-controls"
+Source = "https://github.com/kid1194/frappe-better-numerical-controls"
