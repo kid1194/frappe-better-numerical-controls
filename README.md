@@ -77,15 +77,42 @@ A small plugin for Frappe that adds the support of customizations to the numeric
     <tr>
         <td><code>min</code></td>
         <td>
-            <p>The minimum numerical value allowed.</p>
-            <p><i>Example: <code>10</code></i></p>
+            <p>The minimum number allowed.</p>
+            <p><i>Examples:</i></p>
+            <p><i>- Int: <code>10</code></i></p>
+            <p><i>- Float: <code>10.5</code></i></p>
         </td>
     </tr>
     <tr>
         <td><code>max</code></td>
         <td>
-            <p>The maximum numerical value allowed.</p>
-            <p><i>Example: <code>100</code></i></p>
+            <p>The maximum number allowed.</p>
+            <p><i>Examples:</i></p>
+            <p><i>- Int: <code>100</code></i></p>
+            <p><i>- Float: <code>100.5</code></i></p>
+        </td>
+    </tr>
+    <tr>
+        <td><code>divisible_by</code></td>
+        <td>
+            <p>The number that the value must be divisible by.</p>
+            <p><i>Examples:</i></p>
+            <p><i>- Int: <code>5</code></i></p>
+            <p><i>- Float: <code>5.5</code></i></p>
+        </td>
+    </tr>
+    <tr>
+        <td><code>min_field</code></td>
+        <td>
+            <p>The fieldname that holds the minimum number allowed.</p>
+            <p><i>Example: <code>"min_price"</code></i></p>
+        </td>
+    </tr>
+    <tr>
+        <td><code>max_field</code></td>
+        <td>
+            <p>The fieldname that holds the maximum number allowed.</p>
+            <p><i>Example: <code>"max_price"</code></i></p>
         </td>
     </tr>
 </table>
