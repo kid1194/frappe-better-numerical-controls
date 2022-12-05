@@ -1,121 +1,151 @@
 # Frappe Better Numerical Controls
+
 A small plugin for Frappe that adds the support of customizations to the numerical controls.
 
+---
+
 ### Table of Contents
-<ul>
-    <li><a href="#requirements">Requirements</a></li>
-    <li>
-        <a href="#setup">Setup</a>
-        <ul>
-            <li><a href="#install">Install</a></li>
-            <li><a href="#update">Update</a></li>
-            <li><a href="#uninstall">Uninstall</a></li>
-        </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#available-options">Available Options</a></li>
-    <li><a href="#supported-fields">Supported Fields</a></li>
-    <li><a href="#license">License</a></li>
-</ul>
+- [Requirements](#requirements)
+- [Setup](#setup)
+  - [Install](#install)
+  - [Update](#update)
+  - [Uninstall](#uninstall)
+- [Usage](#usage)
+- [Available Options](#available-options)
+- [Supported Fields](#supported-fields)
+- [Issues](#issues)
+- [License](#license)
 
 ---
 
 ### Requirements
-- Frappe >= v13.0.0
+- Frappe >= v12.0.0
 
 ---
 
 ### Setup
 
+⚠️ *Important* ⚠️
+
+*Do not forget to replace [sitename] with the name of your site in all commands.*
+
 #### Install
-1. Get the plugin from Github
+1. Go to bench directory
+
+```
+cd ~/frappe-bench
+```
+
+2. Get plugin from Github
 
 *(Required only once)*
 
-`bench get-app https://github.com/kid1194/frappe-better-numerical-controls`
+```
+bench get-app https://github.com/kid1194/frappe-better-numerical-controls
+```
 
-2. Install the plugin on any instance/site you want
+3. Build plugin
 
-`bench --site [sitename] install-app frappe_better_numerical_controls`
+*(Required only once)*
 
-3. Check the usage section below
+```
+bench build --app frappe_better_numerical_controls
+```
+
+4. Install plugin on a specific site
+
+```
+bench --site [sitename] install-app frappe_better_numerical_controls
+```
+
+5. Check the [usage](#usage) section below
 
 #### Update
-1. Go to the app directory (frappe-bench/apps/frappe_better_numerical_controls) and execute:
+1. Go to app directory
 
-`git pull`
+```
+cd ~/frappe-bench/apps/frappe_better_numerical_controls
+```
 
-2. Go back to the frappe-bench directory and execute:
+2. Get updates from Github
 
-`bench --site [sitename] migrate`
+```
+git pull
+```
 
-3. *In case you need to restart bench, execute:*
+3. Go to bench directory
 
-`bench restart`
+```
+cd ~/frappe-bench
+```
+
+4. Build plugin
+
+```
+bench build --app frappe_better_numerical_controls
+```
+
+5. Update a specific site
+
+```
+bench --site [sitename] migrate
+```
+
+6. (Optional) Restart bench
+
+```
+bench restart
+```
 
 #### Uninstall
-1. Uninstall the plugin from the instance/site
+1. Go to bench directory
 
-`bench --site [sitename] uninstall-app frappe_better_numerical_controls`
+```
+cd ~/frappe-bench
+```
 
-2. Uninstall the plugin from bench
+2. Uninstall plugin from a specific site
 
-`bench remove-app frappe_better_numerical_controls`
+```
+bench --site [sitename] uninstall-app frappe_better_numerical_controls
+```
+
+3. Remove plugin from bench
+
+```
+bench remove-app frappe_better_numerical_controls
+```
+
+4. (Optional) Restart bench
+
+```
+bench restart
+```
 
 ---
 
 ### Usage
 1. Go to Customization > Customize Form
 2. Enter the form type/name (Ex: 'User')
-3. Scroll down to the form fields area and edit the numerical fields like `Int` that you want
-4. In the `options` property of the fields, add a JSON object of the customizations you want. Example: `{"min": 10}`
+3. Scroll down to the form fields area and create an **Int**, **Float** or **Currency** field or edit an existing custom field
+4. In the **options** property of the field, add a JSON object of the customizations you want. Example:
+```
+{"min": 10, "max": 100}
+```
+
+ℹ️ **Note: You can't modify the original fields of a doctype, so create a new field or clone and modify the entire doctype.**
 
 ---
 
 ### Available Options
-<table>
-    <tr>
-        <td><code>min</code></td>
-        <td>
-            <p>The minimum number allowed.</p>
-            <p><i>Examples:</i></p>
-            <p><i>- Int: <code>10</code></i></p>
-            <p><i>- Float: <code>10.5</code></i></p>
-        </td>
-    </tr>
-    <tr>
-        <td><code>max</code></td>
-        <td>
-            <p>The maximum number allowed.</p>
-            <p><i>Examples:</i></p>
-            <p><i>- Int: <code>100</code></i></p>
-            <p><i>- Float: <code>100.5</code></i></p>
-        </td>
-    </tr>
-    <tr>
-        <td><code>divisible_by</code></td>
-        <td>
-            <p>The number that the value must be divisible by.</p>
-            <p><i>Examples:</i></p>
-            <p><i>- Int: <code>5</code></i></p>
-            <p><i>- Float: <code>5.5</code></i></p>
-        </td>
-    </tr>
-    <tr>
-        <td><code>min_field</code></td>
-        <td>
-            <p>The fieldname that holds the minimum number allowed.</p>
-            <p><i>Example: <code>"min_price"</code></i></p>
-        </td>
-    </tr>
-    <tr>
-        <td><code>max_field</code></td>
-        <td>
-            <p>The fieldname that holds the maximum number allowed.</p>
-            <p><i>Example: <code>"max_price"</code></i></p>
-        </td>
-    </tr>
-</table>
+
+| Option | Description |
+| :--- | :--- |
+| `min` | The minimum number allowed.<br/><br/>- Example:<br/>-- Int: `10`<br/>-- Float: `10.5` |
+| `max` | The maximum number allowed.<br/><br/>- Example:<br/>-- Int: `100`<br/>-- Float: `100.5` |
+| `divisible_by` | The number that the value must be divisible by.<br/><br/>- Example:<br/>-- Int: `5`<br/>-- Float: `5.5` |
+| `min_field` | The name of the field that holds the minimum number allowed.<br/><br/>- Example: `min_price` |
+| `max_field` | The name of the field that holds the maximum number allowed.<br/><br/>- Example: `max_price` |
 
 ---
 
@@ -126,5 +156,10 @@ A small plugin for Frappe that adds the support of customizations to the numeric
 
 ---
 
+### Issues
+If you find bug in the plugin, please create a [bug report](https://github.com/kid1194/frappe-better-numerical-controls/issues/new?assignees=kid1194&labels=bug&template=bug_report.md&title=%5BBUG%5D) and let us know about it.
+
+---
+
 ### License
-MIT
+This repository has been released under the [MIT License](https://github.com/kid1194/frappe-better-numerical-controls/blob/main/LICENSE).

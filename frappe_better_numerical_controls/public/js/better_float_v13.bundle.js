@@ -1,43 +1,42 @@
-import {
-    isDataObject
-} from './utils/check.js';
+/*
+*  Frappe Better Numerical Controls © 2022
+*  Author:  Ameen Ahmed
+*  Company: Level Up Marketing & Software Development Services
+*  Licence: Please refer to LICENSE file
+*/
+
+
+import prepare_options from './utils';
+
 
 frappe.ui.form.ControlFloat = frappe.ui.form.ControlFloat.extend({
    make_input: function() {
         this._super();
-        if (this.df.fieldtype !== 'Float' && this.df.fieldtype !== 'Currency') return;
-        if (frappe.utils.is_json(this.df.options)) {
-            this.df.options = frappe.utils.parse_json(this.df.options);
-        }
-        if (isDataObject(this.df.options)) {
-            let opts = this.df.options,
-            me = this;
-            ['min', 'max', 'divisible_by'].forEach(function(k) {
-                if (opts[k] != null) me['_' + k] = flt(opts[k]);
-            });
-            if (!this.frm) return;
-            ['min_field', 'max_field'].forEach(function(k) {
-                if (opts[k] != null) me['_' + k] = String(opts[k]);
-            });
-        }
+        prepare_options(this, ['Float', 'Currency'], flt);
     },
     parse: function(value) {
         value = this._super(value);
-        if (this._min != null && this._min > value) return this._min;
-        if (this._max != null && this._max < value) return this._max;
-        if (this._divisible_by != null && value % this._divisible_by !== 0) {
-            return Math.round(value / this._divisible_by) * this._divisible_by;
+        if (['Float', 'Currency'].indexOf((this.df || {}).fieldtype) < 0) return value;
+        value = flt(value);
+        if (this._max_field) {
+            let max_value = this.frm.doc[this._max_field];
+            if (max_value != null) {
+                max_value = flt(max_value);
+                if (max_value < value) value = max_value;
+            }
         }
         if (this._min_field) {
-            let field = this.frm.get_field(this._min_field),
-            field_val = field ? flt(field.get_value()) : value;
-            if (field_val > value) return field_val;
+            let min_value = this.frm.doc[this._min_field];
+            if (min_value != null) {
+                min_value = flt(min_value);
+                if (min_value > value) value = min_value;
+            }
         }
-        if (this._max_field) {
-            let field = this.frm.get_field(this._max_field),
-            field_val = field ? flt(field.get_value()) : value;
-            if (field_val < value) return field_val;
+        if (this._divisible_by != null && (value % this._divisible_by) !== 0) {
+            value = Math.round(value / this._divisible_by) * this._divisible_by;
         }
+        if (this._max != null && this._max < value) value = this._max;
+        if (this._min != null && this._min > value) value = this._min;
         return value;
     }
 });
