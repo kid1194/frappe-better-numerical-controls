@@ -32,9 +32,6 @@ frappe.ui.form.ControlFloat = frappe.ui.form.ControlFloat.extend({
                 if (min_value > value) value = min_value;
             }
         }
-        if (this._divisible_by != null && (value % this._divisible_by) !== 0) {
-            value = Math.round(value / this._divisible_by) * this._divisible_by;
-        }
         if (this._max != null && this._max < value) value = this._max;
         if (this._min != null && this._min > value) value = this._min;
         return value;

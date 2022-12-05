@@ -143,9 +143,11 @@ bench restart
 | :--- | :--- |
 | `min` | The minimum number allowed.<br/><br/>- Example:<br/>-- Int: `10`<br/>-- Float: `10.5` |
 | `max` | The maximum number allowed.<br/><br/>- Example:<br/>-- Int: `100`<br/>-- Float: `100.5` |
-| `divisible_by` | The number that the value must be divisible by.<br/><br/>- Example:<br/>-- Int: `5`<br/>-- Float: `5.5` |
+| `divisible_by` | The number that the value must be divisible by. ⚠️ Only for Int fields.<br/><br/>- Example:<br/>-- Int: `5`<br/>-- Float: `5.5` |
 | `min_field` | The name of the field that holds the minimum number allowed.<br/><br/>- Example: `min_price` |
 | `max_field` | The name of the field that holds the maximum number allowed.<br/><br/>- Example: `max_price` |
+
+**The checking order is as follows: max_field, min_field, divisible_by, max, min.**
 
 ---
 
