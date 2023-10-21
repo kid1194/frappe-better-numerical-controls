@@ -51,7 +51,7 @@ function clear_options(field) {
         field['_' + k] = undefined;
     });
 }
-export default function prepare_options(field, type, fn) {
+export default function prepare_options(field, types, fn) {
     if (
         !field.df
         || !field.df.fieldtype

@@ -5,7 +5,6 @@
 
 
 from setuptools import setup, find_packages
-from frappe_better_numerical_controls import __version__ as version
 
 
 with open('requirements.txt') as f:
